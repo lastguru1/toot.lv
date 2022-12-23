@@ -1,0 +1,18 @@
+# Mastodon backup service
+# Put in /etc/systemd/system
+
+[Unit]
+Description=Mastodon - backup service
+# This can only run after Mastodon services are operational
+After=mastodon.service
+
+[Service]
+Type=oneshot
+StandardError=file:/var/log/mastodon-backup.err
+StandardOutput=file:/var/log/mastodon-backup.log
+
+WorkingDirectory=/opt/mastodon
+ExecStart=/bin/bash /opt/mastodon/mastodon-backup
+
+[Install]
+WantedBy=multi-user.target

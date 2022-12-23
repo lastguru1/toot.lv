@@ -1,0 +1,15 @@
+## Description
+
+This is a Work in Progress configuration for toot.lv Mastodon server. I will improve it with time. If you have suggestions, you are welcome to open an issue or a pull request.
+
+Note that this is not a howto on installing Mastodon servers not a manual on how to use or maintain it. At least right now. If you feel that you can contribute to adding more context or documentation here, feel free to open an issue or a pull request.
+
+Passwords and other private stuff is replaces with ***.
+
+## Directories
+
+The main configuration folder is `mastodon`, that would correspond to /opt/mastodon directory on the server.
+
+Some other files are put elsewhere on the filesystem. They are included in the `misc` folder. See comments in the files themselves on what to do with them.
+
+More section will come in time...

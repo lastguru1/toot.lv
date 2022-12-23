@@ -1,0 +1,13 @@
+# Mastodon backup timer
+# Put in /etc/systemd/system
+
+[Unit]
+Description=Schedule a mastodon backup every day
+
+[Timer]
+Persistent=true
+OnCalendar=04:00:00
+Unit=mastodon-backup.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+export AWS_ACCESS_KEY_ID="***"
+export AWS_SECRET_ACCESS_KEY="***"
+export RESTIC_REPOSITORY="s3:https://***.r2.cloudflarestorage.com/toot-backup"
+export RESTIC_PASSWORD="***"
+
+/usr/bin/docker exec -t mastodon-db-1 pg_dump -U mastodon -Fp mastodon_production | gzip > /opt/mastodon/pgbackups/pgb.sql.gz
+/usr/bin/restic backup $(cat /opt/mastodon/backup-files)
+/usr/bin/restic forget --prune --keep-daily 7

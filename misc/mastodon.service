@@ -1,0 +1,17 @@
+# Main Mastodon service
+# Put in /etc/systemd/system
+
+[Unit]
+Description=Mastodon service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+
+WorkingDirectory=/opt/mastodon
+ExecStart=/usr/bin/docker compose -f /opt/mastodon/docker-compose.yml up -d
+ExecStop=/usr/bin/docker compose -f /opt/mastodon/docker-compose.yml down
+
+[Install]
+WantedBy=multi-user.target

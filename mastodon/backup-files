@@ -1,0 +1,8 @@
+/opt/mastodon/elasticsearch
+/opt/mastodon/public
+/opt/mastodon/nginx/certs
+/opt/mastodon/nginx/conf
+/opt/mastodon/pgbackups
+/opt/mastodon/redis
+/opt/mastodon/.env.production
+/opt/mastodon/docker-compose.yml
