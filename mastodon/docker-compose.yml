@@ -45,7 +45,7 @@ services:
 
   es:
     restart: always
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.11
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "cluster.name=es-mastodon"
@@ -83,6 +83,7 @@ services:
     volumes:
       - ./public/system:/mastodon/public/system
     environment:
+      - "RAILS_ENV=production"
       - "VIRTUAL_HOST=toot.lv"
       - "VIRTUAL_PORT=3000"
 
@@ -104,6 +105,7 @@ services:
       - db
       - redis
     environment:
+      - "RAILS_ENV=production"
       - "VIRTUAL_HOST=streaming.toot.lv"
       - "VIRTUAL_PORT=4000"
 
@@ -112,7 +114,7 @@ services:
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq
+    command: bundle exec sidekiq -c 12
     depends_on:
       - db
       - redis
@@ -123,6 +125,8 @@ services:
       - ./public/system:/mastodon/public/system
     healthcheck:
       test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+    environment:
+      - "RAILS_ENV=production"
 
   ## Uncomment to enable federation with tor instances along with adding the following ENV variables
   ## http_proxy=http://privoxy:8118
