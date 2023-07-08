@@ -6,3 +6,7 @@
 /opt/mastodon/redis
 /opt/mastodon/.env.production
 /opt/mastodon/docker-compose.yml
+/opt/mastodon/backup-files
+/opt/mastodon/mastodon-backup
+/etc/systemd/system/mastodon-backup.timer
+/etc/systemd/system/mastodon-backup.service
